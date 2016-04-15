@@ -5,18 +5,17 @@ open System
 
 let private usDic = Path.Combine(__SOURCE_DIRECTORY__, "dict.txt")
 
-let loadDictFromPath path =
+///Allows you to load your own dictionary of data
+let LoadDictFromPath path =
     File.ReadAllLines path
 
-
-let loadDict () =
-    let dict = loadDictFromPath usDic
-    printfn __SOURCE_DIRECTORY__
+///Loads the default dictionary
+let LoadDict () =
+    let dict = LoadDictFromPath usDic
     dict
 
-let loaded = loadDict()
-
-let autocomplete (prefix:string) (data:string[]) =
+///Provide a prefix with an array and returns matches.
+let Autocomplete (prefix:string) (data:string[]) =
     let candidates = data |> Array.filter (fun word -> word.StartsWith prefix)
     candidates
 
